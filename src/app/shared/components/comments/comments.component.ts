@@ -7,6 +7,9 @@ import { Comment } from 'src/app/core/models/comment.model';
   styleUrls: ['./comments.component.scss']
 })
 export class CommentsComponent implements OnInit{
+onLeaveComment() {
+throw new Error('Method not implemented.');
+}
  
   @Input() comments!: Comment[]
   constructor() {}
