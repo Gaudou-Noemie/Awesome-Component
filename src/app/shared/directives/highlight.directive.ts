@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, Input, Renderer2 } from "@angular/core";
+import { AfterViewInit, Directive, ElementRef, HostListener, Input, Renderer2 } from "@angular/core";
 
 @Directive({
     selector: '[highlight]'
@@ -16,5 +16,13 @@ export class HighlightDirective implements AfterViewInit {
  setBackgroundColor(color: string) {
     this.renderer.setStyle(this.el.nativeElement, 'background-color', color);
  }
-
+@HostListener('mouseenter') onMouseEnter() {
+    this.setBackgroundColor('Lightyellow');
+}
+@HostListener('mouseleave') onMouseLeave() {
+    this.setBackgroundColor(this.highlight)
+}
+@HostListener('click') onClick() {
+    this.highlight= 'lightgreen';
+}
 }
