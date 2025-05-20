@@ -9,10 +9,13 @@ import {
   style,
   transition,
   trigger,
+  useAnimation,
 } from '@angular/animations';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Comment } from 'src/app/core/models/comment.model';
+import { flashAnimation } from '../../animations/flash.animation';
+import { slideAndFadeAnimation } from '../../animations/slide-and-fade.animation';
 
 @Component({
   selector: 'app-comments',
@@ -54,24 +57,9 @@ import { Comment } from 'src/app/core/models/comment.model';
             opacity:0
           })
         ]),
-        style({
-          transform: 'translateX(-100%)',
-          opacity: 0,
-          'background-color': 'rgb(201, 157, 242)',
-        }),
-        animate(
-          '250ms ease-out',
-          style({
-            transform: 'translateX(0)',
-            opacity: 1,
-            'background-color': 'white',
-          })
-        ),
+        useAnimation(slideAndFadeAnimation),
        group([
-            sequence([
-          animate('250ms', style ({ 'background-color': 'rgb(201, 157, 242)'})),
-          animate('250ms', style ({ 'background-color': 'white'})),
-        ]),
+        useAnimation(flashAnimation),
          query('.comment-text', [
           animate('250ms', style({
             opacity: 1
