@@ -1,8 +1,10 @@
 import {
   animate,
+  animateChild,
   group,
   query,
   sequence,
+  stagger,
   state,
   style,
   transition,
@@ -17,6 +19,15 @@ import { Comment } from 'src/app/core/models/comment.model';
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss'],
   animations: [
+    trigger('list', [
+      transition(':enter', [
+        query('@listItem', [
+          stagger(50, [
+            animateChild()
+          ])
+        ])
+      ])
+    ]),
     trigger('listItem', [
       state(
         'default',
@@ -58,7 +69,7 @@ import { Comment } from 'src/app/core/models/comment.model';
         ),
        group([
             sequence([
-          animate('250ms', style ({ 'background-color': 'rgb(255, 7, 147)'})),
+          animate('250ms', style ({ 'background-color': 'rgb(201, 157, 242)'})),
           animate('250ms', style ({ 'background-color': 'white'})),
         ]),
          query('.comment-text', [
