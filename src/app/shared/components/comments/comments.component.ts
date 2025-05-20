@@ -59,7 +59,12 @@ import { slideAndFadeAnimation } from '../../animations/slide-and-fade.animation
         ]),
         useAnimation(slideAndFadeAnimation),
        group([
-        useAnimation(flashAnimation),
+        useAnimation(flashAnimation, {
+          params: {
+            time: '1000ms',
+            flashColor: 'rgb(210, 157, 245)'
+          }
+        }),
          query('.comment-text', [
           animate('250ms', style({
             opacity: 1
