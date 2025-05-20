@@ -57,6 +57,10 @@ import { Comment } from 'src/app/core/models/comment.model';
           })
         ),
        group([
+            sequence([
+          animate('250ms', style ({ 'background-color': 'rgb(255, 7, 147)'})),
+          animate('250ms', style ({ 'background-color': 'white'})),
+        ]),
          query('.comment-text', [
           animate('250ms', style({
             opacity: 1
