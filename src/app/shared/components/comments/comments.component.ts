@@ -1,5 +1,8 @@
 import {
   animate,
+  group,
+  query,
+  sequence,
   state,
   style,
   transition,
@@ -35,6 +38,11 @@ import { Comment } from 'src/app/core/models/comment.model';
       transition('active => default', [animate('500ms ease-in-out')]),
 
       transition(':enter', [
+        query('.comment-text, .comment-date', [
+          style({
+            opacity:0
+          })
+        ]),
         style({
           transform: 'translateX(-100%)',
           opacity: 0,
@@ -48,6 +56,18 @@ import { Comment } from 'src/app/core/models/comment.model';
             'background-color': 'white',
           })
         ),
+       group([
+         query('.comment-text', [
+          animate('250ms', style({
+            opacity: 1
+          }))
+        ]),
+         query('.comment-date', [
+          animate('500ms', style({
+            opacity: 1
+          }))
+        ])
+       ])
       ]),
     ]),
   ],
